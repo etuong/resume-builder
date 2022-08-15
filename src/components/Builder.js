@@ -8,11 +8,11 @@ import {
   Text,
 } from "@chakra-ui/react";
 import React from "react";
-import About from "./BuildSteps/About";
-import Education from "./BuildSteps/Education";
-import Projects from "./BuildSteps/Projects";
-import Skills from "./BuildSteps/Skills";
-import Work from "./BuildSteps/Work";
+import About from "./sections/About";
+import Education from "./sections/Education";
+import Projects from "./sections/Projects";
+import Skills from "./sections/Skills";
+import Work from "./sections/Work";
 
 const Builder = () => {
   return (

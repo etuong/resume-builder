@@ -3,7 +3,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { ResumeProvider } from "./Context";
 
-import Main from "./components/Main";
+import Main from "./Main";
 
 ReactDOM.render(
   <React.StrictMode>
