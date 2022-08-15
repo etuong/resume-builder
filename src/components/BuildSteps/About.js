@@ -1,10 +1,9 @@
 import {
-  FormControl,
+  Button, FormControl,
   FormLabel,
   HStack,
   Input,
-  Stack,
-  Button,
+  Stack
 } from "@chakra-ui/react";
 import React from "react";
 import { useResume } from "../../Context";
