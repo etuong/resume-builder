@@ -13,7 +13,7 @@ import {
 } from "@chakra-ui/react";
 import { MdDelete } from "react-icons/md";
 import { v4 as uuidv4 } from "uuid";
-import { useResume } from "../../Context";
+import { useResume } from "../../contexts/ResumeContext";
 
 const Projects = () => {
   const { projects, setProjects } = useResume();

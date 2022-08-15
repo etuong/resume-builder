@@ -1,7 +1,7 @@
 import React from "react";
-import "./ImageUpload.styles.css";
 import Files from "react-files";
-import { useResume } from "../../Context";
+import { useResume } from "../contexts/ResumeContext";
+
 function ImageUpload() {
   const { about, setAbout } = useResume();
 

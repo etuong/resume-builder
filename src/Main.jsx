@@ -1,7 +1,7 @@
 import { Button, Container, Heading, Stack } from "@chakra-ui/react";
 import { MdOutlineFileDownload } from "react-icons/md";
 import { useReactToPrint } from "react-to-print";
-import { useResume } from "./Context";
+import { useResume } from "./contexts/ResumeContext";
 import Builder from "./components/Builder";
 import ResumePreview from "./components/ResumePreview";
 import ThemeSelect from "./components/theme/ThemeSelect";

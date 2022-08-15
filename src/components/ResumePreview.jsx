@@ -13,7 +13,7 @@ import {
 import { BiLinkExternal } from "react-icons/bi";
 import { MdLocalPhone, MdLocationPin, MdMail } from "react-icons/md";
 import { RiLinkedinBoxFill } from "react-icons/ri";
-import { useResume } from "../Context";
+import { useResume } from "../contexts/ResumeContext";
 
 const ResumePreview = () => {
   const { theme, about, educationList, skills, workList, projects, printElem } =

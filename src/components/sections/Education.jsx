@@ -14,7 +14,7 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import React from "react";
-import { useResume } from "../../Context";
+import { useResume } from "../../contexts/ResumeContext";
 
 const Education = () => {
   const { educationList, setEducationList } = useResume();

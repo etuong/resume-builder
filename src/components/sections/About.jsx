@@ -6,8 +6,8 @@ import {
   Stack
 } from "@chakra-ui/react";
 import React from "react";
-import { useResume } from "../../Context";
-import ImageUpload from "../ImageUploadButton/ImageUpload.component";
+import { useResume } from "../../contexts/ResumeContext";
+import ImageUpload from "../ImageUpload";
 
 const About = () => {
   const { about, setAbout } = useResume();
