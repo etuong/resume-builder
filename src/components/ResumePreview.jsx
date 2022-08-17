@@ -142,7 +142,7 @@ const ResumePreview = () => {
 
                 return (
                   <VStack
-                  key={index}
+                    key={index}
                     spacing={0.5}
                     alignItems={"flex-start"}
                     lineHeight={1.3}
@@ -199,7 +199,7 @@ const ResumePreview = () => {
                 const { name, url, description: desc } = project;
                 return (
                   <VStack
-                  key={index}
+                    key={index}
                     spacing={0.5}
                     alignItems={"flex-start"}
                     lineHeight={1.3}
