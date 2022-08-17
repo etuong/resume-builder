@@ -51,6 +51,7 @@ const Projects = () => {
                 <AccordionIcon />
               </AccordionButton>
             </h2>
+            
             <AccordionPanel pb={4}>
               <VStack spacing={3} alignItems={"flex-end"}>
                 <Input

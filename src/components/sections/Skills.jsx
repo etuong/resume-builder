@@ -29,10 +29,12 @@ const Skills = () => {
       });
       return;
     }
+
     const newSkill = {
       id: uuidv4(),
       name: skill,
     };
+
     setSkills([...skills, newSkill]);
     setSkill("");
   };

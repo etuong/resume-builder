@@ -10,9 +10,10 @@ function ImageUpload() {
     setAbout({ ...about, picture: files[0].preview.url });
   };
 
-  const onFilesError = (error, file) => {
+  const onFilesError = (error, _file) => {
     console.log("error code " + error.code + ": " + error.message);
   };
+
   return (
     <Files
       className="files-dropzone"

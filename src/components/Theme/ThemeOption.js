@@ -2,7 +2,7 @@ import { Box, useRadio } from "@chakra-ui/react";
 import React from "react";
 
 const ThemeOption = (props) => {
-  const { getInputProps, getCheckboxProps } = useRadio(props);
+  const { getInputProps, getCheckboxProps } = useRadio(props.radioProps);
 
   const input = getInputProps();
   const checkbox = getCheckboxProps();
@@ -15,10 +15,11 @@ const ThemeOption = (props) => {
         cursor={"pointer"}
         borderWidth={"1px"}
         rounded={"full"}
-        boxShadow={"sm"}
-        bg={props.children}
+        boxShadow={"lg"}
+        bg={props.bgColor}
         _checked={{
-          borderColor: "teal.600",
+          borderColor: "black",
+          borderWidth: "2px",
         }}
         p={5}
       ></Box>

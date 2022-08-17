@@ -27,11 +27,9 @@ const ThemeSelect = () => {
   return (
     <HStack {...group}>
       {options.map((value) => {
-        const radio = getRadioProps({ value });
+        const radioProps = getRadioProps({ value });
         return (
-          <ThemeOption key={value} {...radio}>
-            {value}
-          </ThemeOption>
+          <ThemeOption key={value} radioProps={radioProps} bgColor={value} />
         );
       })}
     </HStack>

@@ -93,11 +93,12 @@ const ResumePreview = () => {
                 EDUCATION
               </Heading>
 
-              {educationList.map((education) => {
+              {educationList.map((education, index) => {
                 const { degree, school, startYr, endYr, grade } = education;
 
                 return (
                   <VStack
+                    key={index}
                     spacing={0}
                     alignItems={"flex-start"}
                     w={"full"}
@@ -129,7 +130,7 @@ const ResumePreview = () => {
                 WORK EXPERIENCE
               </Heading>
 
-              {workList.map((work) => {
+              {workList.map((work, index) => {
                 const {
                   position,
                   type,
@@ -141,6 +142,7 @@ const ResumePreview = () => {
 
                 return (
                   <VStack
+                  key={index}
                     spacing={0.5}
                     alignItems={"flex-start"}
                     lineHeight={1.3}
@@ -193,10 +195,11 @@ const ResumePreview = () => {
                 PROJECTS
               </Heading>
 
-              {projects.map((project) => {
+              {projects.map((project, index) => {
                 const { name, url, description: desc } = project;
                 return (
                   <VStack
+                  key={index}
                     spacing={0.5}
                     alignItems={"flex-start"}
                     lineHeight={1.3}
@@ -221,7 +224,6 @@ const ResumePreview = () => {
                 );
               })}
             </VStack>
-            
           </VStack>
         </HStack>
       </div>
