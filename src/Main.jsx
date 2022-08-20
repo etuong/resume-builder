@@ -23,26 +23,20 @@ const Main = () => {
         style={{ fontFamily: "Poppins" }}
         fontWeight={"medium"}
       >
-        Builder Dashboard
+        Resume Builder
       </Heading>
 
-      <Container maxW={"7xl"} px={8} my={3}>
-        <Stack
-          justifyContent={"space-between"}
-          pt={4}
-          direction={{ base: "column", sm: "row" }}
+      <div style={{ display: "flex", padding: "0px 50px" }}>
+        <ThemeSelect />
+        <Button
+          rightIcon={<MdOutlineFileDownload />}
+          onClick={handlePrint}
+          colorScheme={"green"}
+          style={{ marginLeft: "auto" }}
         >
-          <ThemeSelect />
-          <Button
-            rightIcon={<MdOutlineFileDownload />}
-            onClick={handlePrint}
-            colorScheme={"purple"}
-          >
-            Download
-          </Button>
-        </Stack>
-      </Container>
-
+          Download
+        </Button>
+      </div>
       <Stack
         direction={{ base: "column", md: "row" }}
         // mt={16}

@@ -5,12 +5,14 @@ import ThemeOption from "./ThemeOption";
 
 const ThemeSelect = () => {
   const options = [
-    "purple.400",
     "green.400",
-    "cyan.400",
+    "purple.400",   
+    "blue.400",
     "gray.400",
     "red.400",
     "orange.400",
+    "yellow.400",
+    "black",
     "#F15BA6",
   ];
 

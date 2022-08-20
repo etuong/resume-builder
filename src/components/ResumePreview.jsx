@@ -23,6 +23,7 @@ const ResumePreview = () => {
     width: "115px",
     height: "115px",
     margin: "15px",
+    backgroundSize: "cover",
     borderRadius: "50%",
   };
 
@@ -38,15 +39,17 @@ const ResumePreview = () => {
       <div ref={printElem}>
         <HStack>
           {about.picture && (
-            <img style={imgStyle} src={about.picture} alt="avatar" />
+            <div
+              style={{ ...imgStyle, backgroundImage: `url(${about.picture})` }}
+            ></div>
           )}
 
           <VStack m={4} alignItems={"flex-start"} spacing={0.5}>
             <Heading as="h4" size="md">
-              {about.name ? about.name : "Jhon Doe"}
+              {about.name ? about.name : "Ethan Uong"}
             </Heading>
             <Text color={"gray.500"}>
-              {about.role ? about.role : "Full Stack Web Developer"}
+              {about.role ? about.role : "Full Stack Software Engineer"}
             </Text>
           </VStack>
         </HStack>
