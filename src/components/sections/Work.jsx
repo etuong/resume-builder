@@ -15,15 +15,15 @@ import {
   Textarea,
 } from "@chakra-ui/react";
 import React from "react";
-import { MdDelete } from "react-icons/md";
 import { v4 as uuidv4 } from "uuid";
 import { useResume } from "../../contexts/ResumeContext";
+import { getNewWork } from "../../utils/Utility";
 
 const Work = () => {
   const { workList, setWorkList } = useResume();
 
   const addMore = () => {
-    setWorkList([...workList, workList]);
+    setWorkList((workList) => [...workList, getNewWork()]);
   };
 
   const handleChange = (e, id) => {
@@ -37,25 +37,29 @@ const Work = () => {
     setWorkList(updatedWorkList);
   };
 
-  const deleteWork = (id) => {
-    setWorkList(workList.filter((elem) => elem.id !== id));
+  const handleDelete = (selectedIndex) => {
+    setWorkList((workList) =>
+      workList.filter((_, index) => index !== selectedIndex)
+    );
   };
 
   return (
     <>
       <Accordion allowToggle defaultIndex={[0]}>
         {workList.map((work, index) => (
-          <AccordionItem key={index}>
-            <h2>
-              <AccordionButton>
-                <Box flex="1" textAlign="left">
-                  <Text fontWeight={"medium"}>
-                    {work.position ? work.position : "Position"}
-                  </Text>
-                </Box>
-                <AccordionIcon />
-              </AccordionButton>
-            </h2>
+          <AccordionItem key={work.id}>
+            <AccordionButton>
+              <AccordionIcon />
+              <Box flex="1" textAlign="left" ml={5}>
+                <Text fontWeight={"medium"}>
+                  {work.position ? work.position : "Position"}
+                </Text>
+              </Box>
+              <span onClick={() => handleDelete(index)} mr={5}>
+                &#x2715;
+              </span>
+            </AccordionButton>
+
             <AccordionPanel pb={4}>
               <Input
                 value={work.position}
@@ -129,25 +133,14 @@ const Work = () => {
                   placeholder="Description..."
                 />
               </FormControl>
-
-              <Button
-                rightIcon={<MdDelete />}
-                onClick={() => deleteWork(work.id)}
-                mt={3}
-                colorScheme={"red"}
-              >
-                Delete
-              </Button>
             </AccordionPanel>
           </AccordionItem>
         ))}
       </Accordion>
 
-      {workList.length < 3 && (
-        <Button colorScheme={"purple"} my={5} onClick={addMore}>
-          Add More
-        </Button>
-      )}
+      <Button colorScheme={"green"} my={5} onClick={addMore}>
+        Add More
+      </Button>
     </>
   );
 };

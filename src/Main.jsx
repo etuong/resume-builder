@@ -3,7 +3,7 @@ import { MdOutlineFileDownload } from "react-icons/md";
 import { useReactToPrint } from "react-to-print";
 import { useResume } from "./contexts/ResumeContext";
 import Builder from "./components/Builder";
-import ResumePreview from "./components/ResumePreview";
+import Template2 from "./templates/template2";
 import ThemeSelect from "./components/theme/ThemeSelect";
 
 const Main = () => {
@@ -39,7 +39,6 @@ const Main = () => {
       </div>
       <Stack
         direction={{ base: "column", md: "row" }}
-        // mt={16}
         gap={4}
         mx={{ base: 2, md: 12 }}
         my={8}
@@ -47,7 +46,7 @@ const Main = () => {
         justifyContent={"space-between"}
       >
         <Builder />
-        <ResumePreview />
+        <Template2 />
       </Stack>
     </Container>
   );

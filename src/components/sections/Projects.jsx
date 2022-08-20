@@ -11,15 +11,15 @@ import {
   Textarea,
   VStack,
 } from "@chakra-ui/react";
-import { MdDelete } from "react-icons/md";
 import { v4 as uuidv4 } from "uuid";
 import { useResume } from "../../contexts/ResumeContext";
+import { getNewProject } from "../../utils/Utility";
 
 const Projects = () => {
   const { projects, setProjects } = useResume();
 
   const addMore = () => {
-    setProjects([...projects, projects]);
+    setProjects((projects) => [...projects, getNewProject()]);
   };
 
   const handleChange = (e, id) => {
@@ -32,26 +32,29 @@ const Projects = () => {
     setProjects(updatedProject);
   };
 
-  const deleteProject = (id) => {
-    setProjects(projects.filter((elem) => elem.id !== id));
+  const handleDelete = (selectedIndex) => {
+    setProjects((projects) =>
+      projects.filter((_, index) => index !== selectedIndex)
+    );
   };
 
   return (
     <>
       <Accordion allowToggle defaultIndex={[0]}>
         {projects.map((project, index) => (
-          <AccordionItem key={index}>
-            <h2>
-              <AccordionButton>
-                <Box flex="1" textAlign="left">
-                  <Text fontWeight={"medium"}>
-                    {project.name ? project.name : "Project Name"}
-                  </Text>
-                </Box>
-                <AccordionIcon />
-              </AccordionButton>
-            </h2>
-            
+          <AccordionItem key={project.id}>
+            <AccordionButton>
+              <AccordionIcon />
+              <Box flex="1" textAlign="left" ml={5}>
+                <Text fontWeight={"medium"}>
+                  {project.name ? project.name : "Project Name"}
+                </Text>
+              </Box>
+              <span onClick={() => handleDelete(index)} mr={5}>
+                &#x2715;
+              </span>
+            </AccordionButton>
+
             <AccordionPanel pb={4}>
               <VStack spacing={3} alignItems={"flex-end"}>
                 <Input
@@ -82,25 +85,15 @@ const Projects = () => {
                   variant="filled"
                   placeholder="Description..."
                 />
-
-                <Button
-                  rightIcon={<MdDelete />}
-                  onClick={() => deleteProject(project.id)}
-                  colorScheme={"red"}
-                >
-                  Delete
-                </Button>
               </VStack>
             </AccordionPanel>
           </AccordionItem>
         ))}
       </Accordion>
 
-      {projects.length < 4 && (
-        <Button colorScheme={"purple"} my={5} onClick={addMore}>
-          Add More
-        </Button>
-      )}
+      <Button colorScheme={"green"} my={5} onClick={addMore}>
+        Add More
+      </Button>
     </>
   );
 };

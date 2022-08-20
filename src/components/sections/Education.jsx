@@ -13,17 +13,15 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React from "react";
 import { useResume } from "../../contexts/ResumeContext";
-import { generateKey } from "../../utils/Utility";
+import { getNewEducation } from "../../utils/Utility";
 
 const Education = () => {
   const { educationList, setEducationList } = useResume();
-  const [currentAccordionIndex, setCurrentAccordionIndex] = useState(0);
 
   const addMore = () => {
-    setEducationList([...educationList, educationList]);
-    setCurrentAccordionIndex(educationList.length);
+    setEducationList((eduList) => [...eduList, getNewEducation()]);
   };
 
   const handleChange = (e, index) => {
@@ -35,31 +33,28 @@ const Education = () => {
     setEducationList(updatedEducation);
   };
 
-  const handleDelete = () => {
+  const handleDelete = (selectedIndex) => {
     setEducationList((eduList) =>
-      eduList.filter((_, index) => index !== currentAccordionIndex)
+      eduList.filter((_, index) => index !== selectedIndex)
     );
   };
 
   return (
     <>
-      <Accordion
-        allowToggle
-        index={currentAccordionIndex}
-        onChange={(index) => setCurrentAccordionIndex(index)}
-      >
+      <Accordion allowToggle defaultIndex={0}>
         {educationList.map((education, index) => (
-          <AccordionItem key={generateKey()}>
-            <h2>
-              <AccordionButton>
-                <Box flex="1" textAlign="left">
-                  <Text fontWeight={"medium"}>
-                    {education.degree ? education.degree : "Degree"}
-                  </Text>
-                </Box>
-                <AccordionIcon />
-              </AccordionButton>
-            </h2>
+          <AccordionItem key={education.id}>
+            <AccordionButton>
+              <AccordionIcon />
+              <Box flex="1" textAlign="left" ml={5}>
+                <Text fontWeight={"medium"}>
+                  {education.degree ? education.degree : "Degree"}
+                </Text>
+              </Box>
+              <span onClick={(e) => handleDelete(index)} mr={5}>
+                &#x2715;
+              </span>
+            </AccordionButton>
             <AccordionPanel pb={4}>
               <VStack spacing={4}>
                 <Input
@@ -127,12 +122,6 @@ const Education = () => {
       <Button colorScheme={"green"} my={5} onClick={addMore}>
         Add More
       </Button>
-
-      {currentAccordionIndex !== -1 && (
-        <Button colorScheme={"green"} my={5} ml={5} onClick={handleDelete}>
-          Delete
-        </Button>
-      )}
     </>
   );
 };

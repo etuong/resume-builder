@@ -63,7 +63,7 @@ const Skills = () => {
             placeholder="Skill"
           />
         </FormControl>
-        <Button type="submit" colorScheme={"purple"}>
+        <Button type="submit" colorScheme={"green"}>
           Add
         </Button>
       </HStack>
@@ -76,9 +76,8 @@ const Skills = () => {
                 key={index}
                 borderRadius="full"
                 variant="solid"
-                colorScheme="purple"
+                colorScheme="green"
                 m={0.5}
-                key={skill.id}
               >
                 <TagLabel>{skill.name}</TagLabel>
                 <TagCloseButton onClick={() => deleteSkill(skill.id)} />

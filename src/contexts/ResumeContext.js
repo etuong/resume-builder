@@ -1,4 +1,5 @@
 import { createContext, useContext, useRef, useState } from "react";
+import { getNewEducation, getNewWork, getNewProject } from "../utils/Utility";
 
 const ResumeContext = createContext();
 
@@ -19,16 +20,7 @@ export const ResumeProvider = ({ children }) => {
     picture: "",
   });
 
-  const [educationList, setEducationList] = useState([
-    {
-      id: "",
-      degree: "",
-      school: "",
-      startYr: 0,
-      endYr: 0,
-      grade: "",
-    },
-  ]);
+  const [educationList, setEducationList] = useState([getNewEducation()]);
 
   const [skills, setSkills] = useState([
     {
@@ -77,7 +69,7 @@ export const ResumeProvider = ({ children }) => {
     },
     {
       id: 12,
-      name: "Ajax",
+      name: "Bootstrap",
     },
     {
       id: 13,
@@ -91,36 +83,11 @@ export const ResumeProvider = ({ children }) => {
       id: 15,
       name: "CSS",
     },
-    {
-      id: 16,
-      name: "TailwindCSS",
-    },
-    {
-      id: 17,
-      name: "Bootstrap",
-    },
   ]);
 
-  const [workList, setWorkList] = useState([
-    {
-      id: "",
-      position: "",
-      company: "",
-      type: "",
-      startDate: "",
-      endDate: "",
-      description: "",
-    },
-  ]);
+  const [workList, setWorkList] = useState([getNewWork()]);
 
-  const [projects, setProjects] = useState([
-    {
-      id: "",
-      name: "",
-      description: "",
-      url: "",
-    },
-  ]);
+  const [projects, setProjects] = useState([getNewProject()]);
 
   const value = {
     about,

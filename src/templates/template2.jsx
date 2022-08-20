@@ -14,18 +14,11 @@ import { BiLinkExternal } from "react-icons/bi";
 import { MdLocalPhone, MdLocationPin, MdMail } from "react-icons/md";
 import { RiLinkedinBoxFill } from "react-icons/ri";
 import { useResume } from "../contexts/ResumeContext";
+import "./template2.css";
 
-const ResumePreview = () => {
+const Template2 = () => {
   const { theme, about, educationList, skills, workList, projects, printElem } =
     useResume();
-
-  const imgStyle = {
-    width: "115px",
-    height: "115px",
-    margin: "15px",
-    backgroundSize: "cover",
-    borderRadius: "50%",
-  };
 
   return (
     <Box
@@ -40,7 +33,8 @@ const ResumePreview = () => {
         <HStack>
           {about.picture && (
             <div
-              style={{ ...imgStyle, backgroundImage: `url(${about.picture})` }}
+              className="profile-picture"
+              style={{ backgroundImage: `url(${about.picture})` }}
             ></div>
           )}
 
@@ -234,4 +228,4 @@ const ResumePreview = () => {
   );
 };
 
-export default ResumePreview;
+export default Template2;
