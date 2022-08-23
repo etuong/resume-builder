@@ -25,28 +25,7 @@
   transform: translate(-50%, -50%);
   text-align: center;
   width: 88%;
-}/*
-body {
-  font-family: "Open Sans";
-  font-size: 18px;
-  letter-spacing: 0px;
-  font-weight: 400;
-  line-height: 28px;
-  background: url("http://kingofwallpapers.com/leaves/leaves-016.jpg") right
-    no-repeat;
-  background-size: cover;
 }
-body:before {
-  content: "";
-  display: false;
-  position: fixed;
-  margin: 0;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(255, 255, 255, 0.92);
-}*/
 .caps {
   text-transform: uppercase;
 }
@@ -106,14 +85,12 @@ h3 {
 .side-bar {
   display: false;
   position: absolute;
-  margin: false;
   top: 60px;
   left: 5%;
-  right: false;
   bottom: 0;
-  width: 350px;
-  background-color: #f7e0c1;
-  padding: 320px 30px 50px;
+  color: white;
+  width: 330px;
+  padding: 0px 30px 50px;
 }
 .mugshot {
   display: false;
@@ -198,7 +175,7 @@ h3 {
   letter-spacing: 4px;
   font-weight: 600;
   line-height: 28px;
-  margin: 60px auto 10px;
+  margin: 30px auto 10px;
   padding-bottom: 5px;
   border-bottom: 1px solid #888;
 }

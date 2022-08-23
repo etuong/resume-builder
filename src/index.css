@@ -19,3 +19,12 @@
   transition: all 0.2s ease-in-out;
   -webkit-transition: all 0.2s ease-in-out;
 }
+
+div.profile-picture {
+  width: 115px;
+  height: 115px;
+  margin: 15px;
+  background-size: cover;
+  border-radius: 50%;
+  border: 1px solid black;
+}

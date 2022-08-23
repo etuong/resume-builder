@@ -1,9 +1,23 @@
-import { Box } from "@chakra-ui/react";
 import React from "react";
 import { useResume } from "../contexts/ResumeContext";
 import "./template1.css";
+import {
+  Box,
+  Heading,
+  HStack,
+  ListItem,
+  Tag,
+  TagLabel,
+  Text,
+  UnorderedList,
+  VStack,
+  Wrap,
+} from "@chakra-ui/react";
+import { BiLinkExternal } from "react-icons/bi";
+import { MdLocalPhone, MdLocationPin, MdMail } from "react-icons/md";
+import { RiLinkedinBoxFill } from "react-icons/ri";
 
-export default function LegacyTemplate() {
+export default function Template1() {
   const { theme, about, educationList, skills, workList, projects, printElem } =
     useResume();
 
@@ -11,90 +25,159 @@ export default function LegacyTemplate() {
     <div ref={printElem} className="rela-block page">
       <div className="rela-block top-bar">
         <div className="caps name">
-          <div className="abs-center">Kyle J Shanks</div>
+          <div className="abs-center">{about.name}</div>
         </div>
       </div>
-      <div className="side-bar">
-        <div className="mugshot">
-          <div className="logo">
-            <svg viewBox="0 0 80 80" className="rela-block logo-svg">
-              <path
-                d="M 10 10 L 52 10 L 72 30 L 72 70 L 30 70 L 10 50 Z"
-                strokeWidth="2.5"
-                fill="none"
-              />
-            </svg>
-            <p className="logo-text">kj</p>
-          </div>
+      <HStack className="side-bar" bg={theme}>
+        <div className="side-bar" style={{ backgroundColor: { theme } }}>
+          <div
+            className="profile-picture logo-text"
+            style={{
+              backgroundImage: `url(${about.picture})`,
+              margin: "10px auto",
+            }}
+          ></div>
+
+          <HStack spacing={1}>
+            <MdMail />{" "}
+            <Text>{about.email ? about.email : "ethan@gmail.com"}</Text>
+          </HStack>
+          <HStack spacing={1}>
+            <MdLocalPhone />{" "}
+            <Text>{about.phone ? about.phone : "+123456789"}</Text>
+          </HStack>
+          <HStack spacing={1}>
+            <MdLocationPin />{" "}
+            <Text>{about.address ? about.address : "Seattle, WA"}</Text>
+          </HStack>
+          <HStack spacing={1}>
+            <RiLinkedinBoxFill />{" "}
+            <Text as="a" href={about.linkedin}>
+              LinkedIn
+            </Text>
+          </HStack>
+
+          <p className="rela-block caps side-header">Expertise</p>
+          {skills.map((skill, index) => (
+            <Tag
+              size={"md"}
+              borderRadius="md"
+              variant="solid"
+              mx={1}
+              bg={theme.replace("400", "500")}
+              key={index}
+            >
+              <TagLabel>{skill.name}</TagLabel>
+            </Tag>
+          ))}
+
+          <p className="rela-block caps side-header">Education</p>
+          {educationList.map((education, index) => {
+            const { degree, school, startYr, endYr, grade } = education;
+
+            return (
+              <VStack
+                key={index}
+                spacing={0}
+                alignItems={"flex-start"}
+                w={"full"}
+                pb={2}
+              >
+                <Text fontWeight={"medium"}>
+                  {degree ? degree : "B.Tech Computer Engineering"}
+                </Text>
+                <Text fontSize={"sm"}>
+                  {school ? school : "College of Engineering Pune"}
+                </Text>
+                <HStack
+                  fontSize={"xs"}
+                  fontStyle={"italic"}
+                  justifyContent={"space-between"}
+                  w={"full"}
+                >
+                  <Text>
+                    {startYr ? startYr : 2014} - {endYr ? endYr : 2018}
+                  </Text>
+                  <Text>{grade ? grade : "8.7 CGPA"}</Text>
+                </HStack>
+              </VStack>
+            );
+          })}
         </div>
-        <p>123 My Place Drive</p>
-        <p>Astoria, New York 11105</p>
-        <p>1-800-CALLPLZ</p>
-        <p>emailsareforsquares@gmail.com</p>
-        <br />
-        <p className="rela-block social twitter">Twitter stuff</p>
-        <p className="rela-block social pinterest">Pinterest things</p>
-        <p className="rela-block social linked-in">Linked-in man</p>
-        <p className="rela-block caps side-header">Expertise</p>
-        <p className="rela-block list-thing">HTML</p>
-        <p className="rela-block list-thing">CSS (Stylus)</p>
-        <p className="rela-block list-thing">JavaScript & jQuery</p>
-        <p className="rela-block list-thing">Killer Taste</p>
-        <p className="rela-block caps side-header">Education</p>
-        <p className="rela-block list-thing">Advanced potion making</p>
-        <p className="rela-block list-thing">Degree in popping and locking</p>
-        <p className="rela-block list-thing">Knitting game on point</p>
-        <p className="rela-block list-thing">Culinary af</p>
-      </div>
+      </HStack>
 
       <div className="rela-block content-container">
-        <h2 className="rela-block caps title">Jr Front-End Developer</h2>
+        <h2 className="rela-block caps title">
+          {about.role ? about.role : "Full Stack Software Engineer"}
+        </h2>
         <div className="rela-block separator"></div>
-        <div className="rela-block caps greyed">Profile</div>
-        <p className="long-margin">
-          Retro DIY quinoa, mixtape williamsburg master cleanse bushwick tumblr
-          chillwave dreamcatcher hella wolf paleo. Knausgaard semiotics truffaut
-          cornhole hoodie, YOLO meggings gochujang tofu. Locavore ugh kale chips
-          iPhone biodiesel typewriter freegan, kinfolk brooklyn kitsch man bun.
-          Austin neutra etsy, lumbersexual paleo cornhole sriracha kinfolk
-          meggings kickstarter.{" "}
-        </p>
+
         <div className="rela-block caps greyed">Experience</div>
+        {workList.map((work, index) => {
+          const {
+            position,
+            type,
+            company,
+            startDate,
+            endDate,
+            description: desc,
+          } = work;
 
-        <h3>Job #1</h3>
-        <p className="light">First job description</p>
-        <p className="justified">
-          Plaid gentrify put a bird on it, pickled XOXO farm-to-table irony raw
-          denim messenger bag leggings. Hoodie PBR&B photo booth, vegan
-          chillwave meh paleo freegan ramps. Letterpress shabby chic fixie
-          semiotics. Meditation sriracha banjo pour-over. Gochujang pickled
-          hashtag mixtape cred chambray. Freegan microdosing VHS, 90's bicycle
-          rights aesthetic hella PBR&B.{" "}
-        </p>
+          return (
+            <VStack
+              key={index}
+              spacing={0.5}
+              alignItems={"flex-start"}
+              lineHeight={1.3}
+              pb={2}
+            >
+              <h3> {position ? position : "Full Stack Developer"}</h3>
+              <Text fontSize={"sm"}>
+                {company ? company : "XYZ Infotech Services"} -{" "}
+                {type ? type : "Full-time"}
+              </Text>
+              <Text fontSize={"xs"} fontStyle={"italic"}>
+                {startDate ? startDate : "2018-03"} -{" "}
+                {endDate ? endDate : "2021-12"}
+              </Text>
+              <Text fontSize={"sm"} as="p">
+                {desc
+                  ? desc
+                  : "Fixed bugs from existing websites and implemented enhancements that significantly improved web functionality and speed."}
+              </Text>
+            </VStack>
+          );
+        })}
 
-        <h3>Job #2</h3>
-        <p className="light">Second Job Description</p>
-        <p className="justified">
-          Beard before they sold out photo booth distillery health goth. Hammock
-          franzen green juice meggings, ethical sriracha tattooed schlitz
-          mixtape man bun stumptown swag whatever distillery blog. Affogato
-          iPhone normcore, meggings actually direct trade lomo plaid franzen
-          shoreditch. Photo booth pug paleo austin, pour-over banh mi scenester
-          vice food truck slow-carb. Street art kogi normcore, vice everyday
-          carry crucifix thundercats man bun raw denim echo park pork belly
-          helvetica vinyl.{" "}
-        </p>
-
-        <h3>Job #3</h3>
-        <p className="light">Third Job Description</p>
-        <p className="justified">
-          Next level roof party lo-fi fingerstache skateboard, kogi tumblr.
-          Shabby chic put a bird on it chambray, 3 wolf moon swag beard brooklyn
-          post-ironic taxidermy art party microdosing keffiyeh marfa. Put a bird
-          on it 3 wolf moon cliche helvetica knausgaard. Mumblecore fingerstache
-          lomo, artisan freegan keffiyeh paleo kinfolk kale chips street art
-          blog flannel.
-        </p>
+        <div className="rela-block caps greyed">Projects</div>
+        {projects.map((project, index) => {
+          const { name, url, description: desc } = project;
+          return (
+            <VStack
+              key={index}
+              spacing={0.5}
+              alignItems={"flex-start"}
+              lineHeight={1.3}
+              pb={2}
+            >
+              <HStack as="a" href={url} target="_blank" spacing={0.5}>
+                <Text fontWeight={"medium"} flex={"row"}>
+                  {name ? name : "Project Name"}{" "}
+                </Text>{" "}
+                <BiLinkExternal />
+              </HStack>
+              <UnorderedList pl={5}>
+                <ListItem>
+                  <Text fontSize={"sm"} as="p">
+                    {desc
+                      ? desc
+                      : "Lorem ipsum dolor sit amet consectetur adipisicing."}
+                  </Text>
+                </ListItem>
+              </UnorderedList>
+            </VStack>
+          );
+        })}
       </div>
     </div>
   );

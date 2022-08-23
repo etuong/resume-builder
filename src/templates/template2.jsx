@@ -14,7 +14,6 @@ import { BiLinkExternal } from "react-icons/bi";
 import { MdLocalPhone, MdLocationPin, MdMail } from "react-icons/md";
 import { RiLinkedinBoxFill } from "react-icons/ri";
 import { useResume } from "../contexts/ResumeContext";
-import "./template2.css";
 
 const Template2 = () => {
   const { theme, about, educationList, skills, workList, projects, printElem } =
@@ -31,12 +30,10 @@ const Template2 = () => {
     >
       <div ref={printElem}>
         <HStack>
-          {about.picture && (
-            <div
-              className="profile-picture"
-              style={{ backgroundImage: `url(${about.picture})` }}
-            ></div>
-          )}
+          <div
+            className="profile-picture"
+            style={{ backgroundImage: `url(${about.picture})` }}
+          ></div>
 
           <VStack m={4} alignItems={"flex-start"} spacing={0.5}>
             <Heading as="h4" size="md">
@@ -56,15 +53,15 @@ const Template2 = () => {
         >
           <HStack spacing={1}>
             <MdMail />{" "}
-            <Text>{about.email ? about.email : "jhondoe@gmail.com"}</Text>
+            <Text>{about.email ? about.email : "ethan@gmail.com"}</Text>
           </HStack>
           <HStack spacing={1}>
             <MdLocalPhone />{" "}
-            <Text>{about.phone ? about.phone : "+918559584846"}</Text>
+            <Text>{about.phone ? about.phone : "+123456789"}</Text>
           </HStack>
           <HStack spacing={1}>
             <MdLocationPin />{" "}
-            <Text>{about.address ? about.address : "Pune, MH"}</Text>
+            <Text>{about.address ? about.address : "Seattle, WA"}</Text>
           </HStack>
           <HStack spacing={1}>
             <RiLinkedinBoxFill />{" "}

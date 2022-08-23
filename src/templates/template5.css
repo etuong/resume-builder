@@ -1,0 +1,32 @@
+.separator {
+  width: 30%;
+}
+
+.title.template5 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.title.template5 a {
+  color: #db4d57;
+}
+
+.title.template5 a:hover {
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.title.template5 hr {
+  width: 75%;
+  margin: auto;
+}
+
+.summary {
+  padding: 20px;
+}
+
+.summary p {
+  font-size: 0.8rem;
+  letter-spacing: 0.2rem;
+}

@@ -22,7 +22,7 @@ const Builder = () => {
       maxW={"xl"}
       rounded={"md"}
       shadow={"md"}
-      overflow={"hidden"}
+      style={{ width: "460px" }}
     >
       <Tabs isFitted variant="enclosed">
         <TabList>

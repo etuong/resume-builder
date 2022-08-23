@@ -1,91 +1,183 @@
 import React from "react";
 import "./template3.css";
 
-const template3 = () => {
+import {
+  HStack,
+  ListItem,
+  Tag,
+  TagLabel,
+  Text,
+  UnorderedList,
+  VStack,
+} from "@chakra-ui/react";
+import { BiLinkExternal } from "react-icons/bi";
+import { MdLocalPhone, MdLocationPin, MdMail } from "react-icons/md";
+import { RiLinkedinBoxFill } from "react-icons/ri";
+import { useResume } from "../contexts/ResumeContext";
+
+const Template3 = () => {
+  const { theme, about, educationList, skills, workList, projects, printElem } =
+    useResume();
+
   return (
-    <div className="wrapper clearfix">
+    <div className="wrapper clearfix" ref={printElem}>
       <div className="inner">
         <section>
-          <h1>Employment</h1>
-          <p>
-            Winter 2015 - Present{" "}
-            <em>Grand Interactive, llc. | Mobile App Developer</em>
-          </p>
-          <p>
-            Raised $78,000 in early stage funding, created initial design
-            concepts, and oversaw initial development. Currently oversee and
-            maintain all front end code and server functionality.
-          </p>
-          <p>
-            Spring 2012 - Winter 2015 |{" "}
-            <em>PadMatcher Inc. | CTO, Co-Founder</em>
-          </p>
-          <p>
-            Raised $78,000 in early stage funding, created initial design
-            concepts, and oversaw initial development. Oversaw and maintained
-            all front end code and server functionality.
-          </p>
-          <p>
-            Fall 2011 - Fall 2013 |{" "}
-            <em>Penrose Realty llc. | Desinger & Assistant</em>
-          </p>
-          <p>
-            Responsible for all technical areas. Maintain servers, computers,
-            and provide in office technical support. Rebranded company from
-            ground up including a fully responsive website.{" "}
-          </p>
+          <h1>About</h1>
+          <div
+            className="profile-picture"
+            style={{ backgroundImage: `url(${about.picture})` }}
+          ></div>
+
+          <HStack spacing={1}>
+            <MdMail />{" "}
+            <Text>{about.email ? about.email : "ethan@gmail.com"}</Text>
+          </HStack>
+          <HStack spacing={1}>
+            <MdLocalPhone />{" "}
+            <Text>{about.phone ? about.phone : "+123456789"}</Text>
+          </HStack>
+          <HStack spacing={1}>
+            <MdLocationPin />{" "}
+            <Text>{about.address ? about.address : "Seattle, WA"}</Text>
+          </HStack>
+          <HStack spacing={1}>
+            <RiLinkedinBoxFill />{" "}
+            <Text as="a" href={about.linkedin}>
+              LinkedIn
+            </Text>
+          </HStack>
         </section>
+
         <section>
           <h1>Technical Skills</h1>
-          <ul className="skill-set">
-            <li>Mobile Development</li>
-            <li>Xamarin</li>
-            <li>CSS3</li>
-            <li>Adobe Photoshop</li>
-            <li>HTML5</li>
-            <li>CSS3</li>
-            <li>JQUERY</li>
-            <li>UI Design</li>
-            <li>Company Branding</li>
-            <li>Responsive Web Design</li>
+          <ul className="skill-set" style={{ marginTop: "10px" }}>
+            {skills.map((skill, index) => (
+              <Tag
+                size={"md"}
+                mx={1}
+                my={1}
+                borderRadius="md"
+                variant="solid"
+                bg={theme.replace("400", "500")}
+                key={index}
+              >
+                <TagLabel>{skill.name}</TagLabel>
+              </Tag>
+            ))}
           </ul>
         </section>
+
         <section>
-          <h1>References</h1>
-          <p>
-            William Grand | <em>Grand Interactive, llc. | CEO</em>
-          </p>
-          <p>(617) 448-0910 | wgrand@grandinteractive.com</p>
-          <p>
-            Eric Chauvin | <em>PadMatcher Inc. | CEO</em>
-          </p>
-          <p>(617) 448-0910 | eric@padmatcher.com</p>
-          <p>
-            Chris Heller <em>Penrose Realty LLC. | Broker</em>
-          </p>
-          <p>(617) 794-4554 | chris@penroserealty.com</p>
+          <h1>Employment</h1>
+          {workList.map((work, index) => {
+            const {
+              position,
+              type,
+              company,
+              startDate,
+              endDate,
+              description: desc,
+            } = work;
+
+            return (
+              <VStack
+                key={index}
+                spacing={0.5}
+                alignItems={"flex-start"}
+                lineHeight={1.3}
+                pb={2}
+              >
+                <Text fontWeight={"medium"}>
+                  {position ? position : "Full Stack Developer"}
+                </Text>
+                <Text fontSize={"sm"}>
+                  {company ? company : "XYZ Infotech Services"} -{" "}
+                  {type ? type : "Full-time"}
+                </Text>
+                <Text fontSize={"xs"} fontStyle={"italic"}>
+                  {startDate ? startDate : "2018-03"} -{" "}
+                  {endDate ? endDate : "2021-12"}
+                </Text>
+                <Text fontSize={"sm"} as="p">
+                  {desc
+                    ? desc
+                    : "Fixed bugs from existing websites and implemented enhancements that significantly improved web functionality and speed."}
+                </Text>
+              </VStack>
+            );
+          })}
         </section>
+
         <section>
-          <h1>Personal Interests</h1>
-          <ul className="skill-set">
-            <li>Faith</li>
-            <li>Biblical Studies</li>
-            <li>Playing Guitar</li>
-            <li>Song Writing</li>
-            <li>Health & Nutrition</li>
-            <li>Reading</li>
-          </ul>
+          <h1>Projects</h1>
+          {projects.map((project, index) => {
+            const { name, url, description: desc } = project;
+            return (
+              <VStack
+                key={index}
+                spacing={0.5}
+                alignItems={"flex-start"}
+                lineHeight={1.3}
+                pb={2}
+              >
+                <HStack as="a" href={url} target="_blank" spacing={0.5}>
+                  <Text fontWeight={"medium"} flex={"row"}>
+                    {name ? name : "Project Name"}{" "}
+                  </Text>{" "}
+                  <BiLinkExternal />
+                </HStack>
+                <UnorderedList pl={5}>
+                  <ListItem>
+                    <Text fontSize={"sm"} as="p">
+                      {desc
+                        ? desc
+                        : "Lorem ipsum dolor sit amet consectetur adipisicing."}
+                    </Text>
+                  </ListItem>
+                </UnorderedList>
+              </VStack>
+            );
+          })}
         </section>
+
         <section>
-          <div className="handmade">
-            <p>
-              handmade by <em> Anthony Adamski</em>
-            </p>
-          </div>
+          <h1>Education</h1>
+          {educationList.map((education, index) => {
+            const { degree, school, startYr, endYr, grade } = education;
+
+            return (
+              <VStack
+                key={index}
+                spacing={0}
+                alignItems={"flex-start"}
+                w={"full"}
+                pb={2}
+              >
+                <Text fontWeight={"medium"}>
+                  {degree ? degree : "B.Tech Computer Engineering"}
+                </Text>
+                <Text fontSize={"sm"}>
+                  {school ? school : "College of Engineering Pune"}
+                </Text>
+                <HStack
+                  fontSize={"xs"}
+                  fontStyle={"italic"}
+                  justifyContent={"space-between"}
+                  w={"full"}
+                >
+                  <Text>
+                    {startYr ? startYr : 2014} - {endYr ? endYr : 2018}
+                  </Text>
+                  <Text>{grade ? grade : "8.7 CGPA"}</Text>
+                </HStack>
+              </VStack>
+            );
+          })}
         </section>
       </div>
     </div>
   );
 };
 
-export default template3;
+export default Template3;
