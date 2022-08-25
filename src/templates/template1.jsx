@@ -22,6 +22,7 @@ export default function Template1() {
     useResume();
 
   return (
+    
     <div ref={printElem} className="rela-block page">
       <div className="rela-block top-bar">
         <div className="caps name">

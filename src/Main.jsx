@@ -20,7 +20,7 @@ const templateMap = [
 ];
 
 const Main = () => {
-  const [templateIndex, setTemplateIndex] = useState(1);
+  const [templateIndex, setTemplateIndex] = useState(2);
   const { printElem } = useResume();
 
   const handlePrint = useReactToPrint({

@@ -1,159 +1,204 @@
 import React from "react";
 import "./template4.css";
+import {
+  Box,
+  Heading,
+  HStack,
+  ListItem,
+  Tag,
+  TagLabel,
+  Text,
+  UnorderedList,
+  VStack,
+  Stack,
+  Wrap,
+} from "@chakra-ui/react";
+import { BiLinkExternal } from "react-icons/bi";
+import { MdLocalPhone, MdLocationPin, MdMail } from "react-icons/md";
+import { RiLinkedinBoxFill } from "react-icons/ri";
+import { useResume } from "../contexts/ResumeContext";
 
-const template4 = () => {
+const Template4 = () => {
+  const { theme, about, educationList, skills, workList, projects, printElem } =
+    useResume();
+
   return (
-    <div className="container">
+    <div className="container" ref={printElem}>
       <div className="header">
+        <div
+          className="profile-picture"
+          style={{ backgroundImage: `url(${about.picture})` }}
+        ></div>
         <div className="full-name">
-          <span className="first-name">John</span>
-          <span className="last-name">Doe</span>
-        </div>
-        <div className="contact-info">
-          <span className="email">Email: </span>
-          <span className="email-val">john.doe@gmail.com</span>
-          <span className="separator"></span>
-          <span className="phone">Phone: </span>
-          <span className="phone-val">111-222-3333</span>
-        </div>
-
-        <div className="about">
-          <span className="position">Front-End Developer </span>
-          <span className="desc">
-            I am a front-end developer with more than 3 years of experience
-            writing html, css, and js. I'm motivated, result-focused and seeking
-            a successful team-oriented company with opportunity to grow.
+          <span className="first-name">
+            {" "}
+            {about.name ? about.name : "Ethan Uong"}
+          </span>
+          <span className="last-name">
+            {" "}
+            {about.role ? about.role : "Full Stack Software Engineer"}
           </span>
         </div>
+        <div className="contact-info">
+          <HStack spacing={1}>
+            <MdMail />{" "}
+            <Text>{about.email ? about.email : "ethan@gmail.com"}</Text>
+          </HStack>
+          <HStack spacing={1}>
+            <MdLocalPhone />{" "}
+            <Text>{about.phone ? about.phone : "+123456789"}</Text>
+          </HStack>
+          <HStack spacing={1}>
+            <MdLocationPin />{" "}
+            <Text>{about.address ? about.address : "Seattle, WA"}</Text>
+          </HStack>
+          <HStack spacing={1}>
+            <RiLinkedinBoxFill />{" "}
+            <Text as="a" href={about.linkedin}>
+              LinkedIn
+            </Text>
+          </HStack>
+        </div>
       </div>
+
+      <Stack gap={4} w={"full"} direction={{ base: "column", md: "row" }}>
+        <div className="details">
+          <div className="section">
+            <div className="section__title">Education</div>
+            <div className="section__list">
+              {educationList.map((education, index) => {
+                const { degree, school, startYr, endYr, grade } = education;
+
+                return (
+                  <VStack
+                    key={index}
+                    spacing={0}
+                    alignItems={"flex-start"}
+                    w={"full"}
+                    pb={2}
+                  >
+                    <Text fontWeight={"medium"}>
+                      {degree ? degree : "B.Tech Computer Engineering"}
+                    </Text>
+                    <Text fontSize={"sm"}>
+                      {school ? school : "College of Engineering Pune"}
+                    </Text>
+                    <HStack
+                      fontSize={"xs"}
+                      fontStyle={"italic"}
+                      justifyContent={"space-between"}
+                      w={"full"}
+                    >
+                      <Text>
+                        {startYr ? startYr : 2014} - {endYr ? endYr : 2018}
+                      </Text>
+                      <Text>{grade ? grade : "8.7 CGPA"}</Text>
+                    </HStack>
+                  </VStack>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+
+        <div className="details">
+          <div className="section">
+            <div className="section__title">Work Experience</div>
+            <div className="section__list">
+              {workList.map((work, index) => {
+                const {
+                  position,
+                  type,
+                  company,
+                  startDate,
+                  endDate,
+                  description: desc,
+                } = work;
+
+                return (
+                  <VStack
+                    key={index}
+                    spacing={0.5}
+                    alignItems={"flex-start"}
+                    lineHeight={1.3}
+                    pb={2}
+                  >
+                    <Text fontWeight={"medium"}>
+                      {position ? position : "Full Stack Developer"}
+                    </Text>
+                    <Text fontSize={"sm"}>
+                      {company ? company : "XYZ Infotech Services"} -{" "}
+                      {type ? type : "Full-time"}
+                    </Text>
+                    <Text fontSize={"xs"} fontStyle={"italic"}>
+                      {startDate ? startDate : "2018-03"} -{" "}
+                      {endDate ? endDate : "2021-12"}
+                    </Text>
+                    <Text fontSize={"sm"} as="p">
+                      {desc
+                        ? desc
+                        : "Fixed bugs from existing websites and implemented enhancements that significantly improved web functionality and speed."}
+                    </Text>
+                  </VStack>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </Stack>
+
       <div className="details">
         <div className="section">
-          <div className="section__title">Experience</div>
+          <div className="section__title">Skills</div>
           <div className="section__list">
-            <div className="section__list-item">
-              <div className="left">
-                <div className="name">KlowdBox</div>
-                <div className="addr">San Fr, CA</div>
-                <div className="duration">Jan 2011 - Feb 2015</div>
-              </div>
-              <div className="right">
-                <div className="name">Fr developer</div>
-                <div className="desc">did This and that</div>
-              </div>
-            </div>
-            <div className="section__list-item">
-              <div className="left">
-                <div className="name">Akount</div>
-                <div className="addr">San Monica, CA</div>
-                <div className="duration">Jan 2011 - Feb 2015</div>
-              </div>
-              <div className="right">
-                <div className="name">Fr developer</div>
-                <div className="desc">did This and that</div>
-              </div>
-            </div>
+            {skills.map((skill, index) => (
+              <Tag
+                size={"md"}
+                borderRadius="md"
+                variant="solid"
+                bg={theme.replace("400", "500")}
+                key={index}
+                mx={1}
+              >
+                <TagLabel>{skill.name}</TagLabel>
+              </Tag>
+            ))}
           </div>
         </div>
-        <div className="section">
-          <div className="section__title">Education</div>
-          <div className="section__list">
-            <div className="section__list-item">
-              <div className="left">
-                <div className="name">Sample Institute of technology</div>
-                <div className="addr">San Fr, CA</div>
-                <div className="duration">Jan 2011 - Feb 2015</div>
-              </div>
-              <div className="right">
-                <div className="name">Fr developer</div>
-                <div className="desc">did This and that</div>
-              </div>
-            </div>
-            <div className="section__list-item">
-              <div className="left">
-                <div className="name">Akount</div>
-                <div className="addr">San Monica, CA</div>
-                <div className="duration">Jan 2011 - Feb 2015</div>
-              </div>
-              <div className="right">
-                <div className="name">Fr developer</div>
-                <div className="desc">did This and that</div>
-              </div>
-            </div>
-          </div>
-        </div>
+      </div>
+
+      <div className="details">
         <div className="section">
           <div className="section__title">Projects</div>
           <div className="section__list">
-            <div className="section__list-item">
-              <div className="name">DSP</div>
-              <div className="text">
-                I am a front-end developer with more than 3 years of experience
-                writing html, css, and js. I'm motivated, result-focused and
-                seeking a successful team-oriented company with opportunity to
-                grow.
-              </div>
-            </div>
-
-            <div className="section__list-item">
-              <div className="name">DSP</div>
-              <div className="text">
-                I am a front-end developer with more than 3 years of experience
-                writing html, css, and js. I'm motivated, result-focused and
-                seeking a successful team-oriented company with opportunity to
-                grow. <a href="/login">link</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="section">
-          <div className="section__title">Skills</div>
-          <div className="skills">
-            <div className="skills__item">
-              <div className="left">
-                <div className="name">Javascript</div>
-              </div>
-              <div className="right">
-                <input id="ck1" type="checkbox" checked />
-
-                <label for="ck1"></label>
-                <input id="ck2" type="checkbox" checked />
-
-                <label for="ck2"></label>
-                <input id="ck3" type="checkbox" />
-
-                <label for="ck3"></label>
-                <input id="ck4" type="checkbox" />
-                <label for="ck4"></label>
-                <input id="ck5" type="checkbox" />
-                <label for="ck5"></label>
-              </div>
-            </div>
-          </div>
-          <div className="skills__item">
-            <div className="left">
-              <div className="name">CSS</div>
-            </div>
-            <div className="right">
-              <input id="ck1" type="checkbox" checked />
-
-              <label for="ck1"></label>
-              <input id="ck2" type="checkbox" checked />
-
-              <label for="ck2"></label>
-              <input id="ck3" type="checkbox" />
-
-              <label for="ck3"></label>
-              <input id="ck4" type="checkbox" />
-              <label for="ck4"></label>
-              <input id="ck5" type="checkbox" />
-              <label for="ck5"></label>
-            </div>
-          </div>
-        </div>
-        <div className="section">
-          <div className="section__title">Interests</div>
-          <div className="section__list">
-            <div className="section__list-item">Football, programming.</div>
+            {projects.map((project, index) => {
+              const { name, url, description: desc } = project;
+              return (
+                <VStack
+                  key={index}
+                  spacing={0.5}
+                  alignItems={"flex-start"}
+                  lineHeight={1.3}
+                  pb={2}
+                >
+                  <HStack as="a" href={url} target="_blank" spacing={0.5}>
+                    <Text fontWeight={"medium"} flex={"row"}>
+                      {name ? name : "Project Name"}{" "}
+                    </Text>{" "}
+                    <BiLinkExternal />
+                  </HStack>
+                  <UnorderedList pl={5}>
+                    <ListItem>
+                      <Text fontSize={"sm"} as="p">
+                        {desc
+                          ? desc
+                          : "Lorem ipsum dolor sit amet consectetur adipisicing."}
+                      </Text>
+                    </ListItem>
+                  </UnorderedList>
+                </VStack>
+              );
+            })}
           </div>
         </div>
       </div>
@@ -161,4 +206,4 @@ const template4 = () => {
   );
 };
 
-export default template4;
+export default Template4;

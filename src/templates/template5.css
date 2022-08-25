@@ -2,6 +2,9 @@
   width: 30%;
 }
 
+.container {
+  height: 100%;
+}
 .title.template5 {
   margin-top: 10px;
   margin-bottom: 10px;
