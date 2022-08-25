@@ -2,7 +2,7 @@
 
 ReactJS Resume Generator generates customized Resume in few minutes on your requirements. Live resume editor.
 
-[Visit Now](https://resumegenx.netlify.app/) 🚀
+[Visit Now](https://etuong.github.io/resume-builder/) 🚀
 
 Forked from [jigar-sable](https://github.com/jigar-sable/resumegen)
 

@@ -18,7 +18,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "gh-pages -d dist"
+    "deploy": "npm run build && gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -30,6 +30,7 @@
     "type": "git",
     "url": "https://github.com/etuong/resume-builder.git"
   },
+  "homepage": "https://etuong.github.io/resume-builder/",
   "browserslist": {
     "production": [
       ">0.2%",
