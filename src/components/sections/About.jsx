@@ -98,7 +98,7 @@ const About = () => {
             placeholder="Address"
           />
         </FormControl>
-        
+
         <FormControl>
           <FormLabel htmlFor="linkedin">LinkedIn</FormLabel>
           <Input

@@ -6,7 +6,7 @@ import ThemeOption from "./ThemeOption";
 const ThemeSelect = () => {
   const options = [
     "green.400",
-    "purple.400",   
+    "purple.400",
     "blue.400",
     "gray.400",
     "red.400",
